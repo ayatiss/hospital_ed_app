@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends
-from core.database import SessionLocal
+from app.core.database import SessionLocal
+
 
 app = FastAPI()
 
