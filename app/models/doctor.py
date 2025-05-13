@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from app.models.user import User
 
 class Doctor(User):
@@ -8,7 +8,7 @@ class Doctor(User):
     department = Column(String, nullable=True)
     schedule = Column(String, nullable=True)
     userID = Column(Integer, ForeignKey("users.userID"))
-
+    is_archived = Column(Boolean, default=False)
     __mapper_args__ = {
         "polymorphic_identity": "doctor",
     }

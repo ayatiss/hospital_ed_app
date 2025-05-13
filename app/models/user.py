@@ -1,15 +1,17 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from app.core.database import Base
 
 class User(Base):
     __tablename__ = "users"
 
     userID = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
+    username = Column(String, nullable=False)
+    firstname = Column(String, nullable=False)
+    lastname = Column(String, nullable=False)
     role = Column(String, nullable=False)
-    contactInfo = Column(String, nullable=True)
-
+    number  = Column(String, nullable=True)
+    email = Column(String, nullable=True)
+    password = Column(String, nullable=False)
     __mapper_args__ = {
         "polymorphic_identity": "user",
         "polymorphic_on": role,
