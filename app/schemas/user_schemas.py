@@ -14,7 +14,7 @@ class TokenResponse(BaseModel):
     token_type: str = "bearer"
 
 
-#  Create nurse
+# Create nurse
 class CreateNurseSchema(BaseModel):
     username: str
     firstname: str
@@ -38,7 +38,7 @@ class CreateDoctorSchema(BaseModel):
     email: Optional[EmailStr] = None
 
 
-#Create receptionist
+# Create receptionist
 class CreateReceptionistSchema(BaseModel):
     username: str
     firstname: str
@@ -48,14 +48,17 @@ class CreateReceptionistSchema(BaseModel):
     email: Optional[EmailStr] = None
 
 
+# Response for user info
 class UserResponseSchema(BaseModel):
     userID: int
     username: str
     firstname: str
     lastname: str
     role: str
-    number: Optional[str]
-    email: Optional[EmailStr]
+    number: Optional[str] = None
+    email: Optional[EmailStr] = None
 
     class Config:
         orm_mode = True
+
+

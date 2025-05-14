@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String
 from app.core.database import Base
 
 class User(Base):
@@ -9,9 +9,10 @@ class User(Base):
     firstname = Column(String, nullable=False)
     lastname = Column(String, nullable=False)
     role = Column(String, nullable=False)
-    number  = Column(String, nullable=True)
+    number = Column(String, nullable=True)
     email = Column(String, nullable=True)
-    password = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=False)
+
     __mapper_args__ = {
         "polymorphic_identity": "user",
         "polymorphic_on": role,

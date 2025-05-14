@@ -10,17 +10,20 @@ from fastapi import HTTPException
 
 # Create nurse logic
 def create_nurse(db: Session, nurse_data: CreateNurseSchema) -> Nurse:
-    hashed_password = hash_password(nurse_data.password)
+    hashed = hash_password(nurse_data.password)
+
     new_nurse = Nurse(
         username=nurse_data.username,
         firstname=nurse_data.firstname,
         lastname=nurse_data.lastname,
-        password=hashed_password,
+        hashed_password=hashed,  
+        role="nurse",
         department=nurse_data.department,
         schedule=nurse_data.schedule,
         number=nurse_data.number,
-        email=nurse_data.email
+        email=nurse_data.email,
     )
+    
     db.add(new_nurse)
     db.commit()
     db.refresh(new_nurse)
@@ -29,12 +32,13 @@ def create_nurse(db: Session, nurse_data: CreateNurseSchema) -> Nurse:
 
 # Create doctor logic
 def create_doctor(db: Session, doctor_data: CreateDoctorSchema) -> Doctor:
-    hashed_password = hash_password(doctor_data.password)
+    hashed = hash_password(doctor_data.password)
     new_doctor = Doctor(
         username=doctor_data.username,
         firstname=doctor_data.firstname,
         lastname=doctor_data.lastname,
-        password=hashed_password,
+        hashed_password=hashed,  
+        role="doctor",
         department=doctor_data.department,
         schedule=doctor_data.schedule,
         number=doctor_data.number,
@@ -48,12 +52,13 @@ def create_doctor(db: Session, doctor_data: CreateDoctorSchema) -> Doctor:
 
 # Create receptionist logic
 def create_receptionist(db: Session, receptionist_data: CreateReceptionistSchema) -> Receptionist:
-    hashed_password = hash_password(receptionist_data.password)
+    hashed = hash_password(receptionist_data.password)
     new_receptionist = Receptionist(
         username=receptionist_data.username,
         firstname=receptionist_data.firstname,
         lastname=receptionist_data.lastname,
-        password=hashed_password,
+        hashed_password=hashed,  
+        role="receptionist",
         number=receptionist_data.number,
         email=receptionist_data.email
     )
