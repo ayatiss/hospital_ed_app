@@ -21,7 +21,14 @@ def create_nurse(db: Session, nurse_data: CreateNurseSchema) -> Nurse:
         department=nurse_data.department,
         schedule=nurse_data.schedule,
         number=nurse_data.number,
-        email=nurse_data.email,
+        email=nurse_data.email,   
+        address=nurse_data.address,
+        gender=nurse_data.gender,
+        date_of_birth=nurse_data.date_of_birth,
+        hire_date=nurse_data.hire_date,
+        years_of_experience=nurse_data.years_of_experience, 
+        is_archived=nurse_data.is_archived,
+        is_available=nurse_data.is_available
     )
     
     db.add(new_nurse)
@@ -42,7 +49,14 @@ def create_doctor(db: Session, doctor_data: CreateDoctorSchema) -> Doctor:
         department=doctor_data.department,
         schedule=doctor_data.schedule,
         number=doctor_data.number,
-        email=doctor_data.email
+        email=doctor_data.email,
+        address=doctor_data.address,
+        gender=doctor_data.gender,
+        specialization=doctor_data.specialization,
+        license_number=doctor_data.license_number,
+        years_of_experience=doctor_data.years_of_experience,
+        is_archived=doctor_data.is_archived,
+        is_available=doctor_data.is_available
     )
     db.add(new_doctor)
     db.commit()
@@ -60,7 +74,11 @@ def create_receptionist(db: Session, receptionist_data: CreateReceptionistSchema
         hashed_password=hashed,  
         role="receptionist",
         number=receptionist_data.number,
-        email=receptionist_data.email
+        email=receptionist_data.email,
+        address=receptionist_data.address,
+        gender=receptionist_data.gender,
+        desk_location=receptionist_data.desk_location,
+        languages_spoken=receptionist_data.languages_spoken
     )
     db.add(new_receptionist)
     db.commit()
