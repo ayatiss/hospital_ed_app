@@ -9,7 +9,11 @@ router = APIRouter()
 
 # Admin: Create nurse
 @router.post("/create-nurse", response_model=NurseResponseSchema)
-def create_nurse_endpoint(nurse_data: CreateNurseSchema, db: Session = Depends(get_db), current_admin: User = Depends(get_current_admin)):
+def create_nurse_endpoint(
+    nurse_data: CreateNurseSchema,
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(get_current_admin)
+):
     return create_nurse(db, nurse_data)
 
 

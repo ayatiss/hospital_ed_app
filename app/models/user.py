@@ -16,6 +16,8 @@ class User(Base):
     gender = Column(String, nullable=True)  # male, female, other
     date_of_birth = Column(Date, nullable=True)
     hire_date = Column(Date, nullable=True)
+    is_archived = Column(String, nullable=False)
+    is_available = Column(String, nullable=True)
 
     __mapper_args__ = {
         "polymorphic_identity": "user",

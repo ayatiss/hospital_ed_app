@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from app.models.user import User
+from sqlalchemy.orm import relationship
 
 class Doctor(User):
     __tablename__ = "doctors"
@@ -10,9 +11,11 @@ class Doctor(User):
     schedule = Column(String, nullable=True)
     specialization = Column(String, nullable=True)
     license_number = Column(String, nullable=True)
-    years_of_experience = Column(Integer, nullable=True)
-    is_archived = Column(Boolean, default=False)
-    is_available = Column(Boolean, default=True)
+    years_of_experience = Column(String, nullable=True)
+
+    # ✅ Add relationship to user
+    user = relationship("User", backref="doctor", uselist=False)
+
     __mapper_args__ = {
         "polymorphic_identity": "doctor",
     }

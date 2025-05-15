@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 
-from sqlalchemy import Date
+from datetime import date
 
 
 # Login input
@@ -21,15 +21,15 @@ class CreateNurseSchema(BaseModel):
     username: str
     firstname: str
     lastname: str
-    role: str
     password: str
     number: Optional[str] = None
     email: Optional[EmailStr] = None
     address: Optional[str]
     gender: Optional[str]
-    date_of_birth: Optional[Date]
-    hire_date: Optional[Date]
+    date_of_birth: Optional[date]
+    hire_date: Optional[date]
     department: Optional[str] = None
+    certifications: Optional[str]
     years_of_experience: Optional[str] = None
     schedule: Optional[str] = None
     is_archived: Optional[bool] = False
@@ -42,14 +42,15 @@ class CreateDoctorSchema(BaseModel):
     firstname: str
     lastname: str
     password: str
-    role: str
     number: Optional[str] = None
     email: Optional[EmailStr] = None
     address: Optional[str]
     gender: Optional[str]
+    date_of_birth: Optional[date]
     department: Optional[str] = None
     specialization: Optional[str] = None
     license_number: Optional[str] = None
+    hire_date: Optional[date]
     years_of_experience: Optional[str] = None
     schedule: Optional[str] = None
     is_archived: Optional[bool] = False
@@ -62,13 +63,16 @@ class CreateReceptionistSchema(BaseModel):
     firstname: str
     lastname: str
     password: str
-    role: str
+    date_of_birth: Optional[date]
     number: Optional[str] = None
     email: Optional[EmailStr] = None
     address: Optional[str]
     gender: Optional[str]
+    hire_date: Optional[date]
     desk_location: Optional[str] = None
     languages_spoken: Optional[str] = None
+    is_archived: Optional[bool] = False
+    is_available: Optional[bool] = True
 
 
 # Response for user info
@@ -82,8 +86,10 @@ class UserResponseSchema(BaseModel):
     email: Optional[EmailStr] = None
     address: Optional[str]
     gender: Optional[str]
-    date_of_birth: Optional[Date]
-    hire_date: Optional[Date]
+    date_of_birth: Optional[date]
+    hire_date: Optional[date]
+    is_archived: Optional[bool] = False
+    is_available: Optional[bool] = True
     class Config:
         orm_mode = True
 
@@ -94,8 +100,6 @@ class DoctorResponseSchema(BaseModel):
     license_number: Optional[str] = None
     years_of_experience: Optional[str] = None
     schedule: Optional[str] = None
-    is_archived: Optional[bool] = False
-    is_available: Optional[bool] = True
     user: UserResponseSchema
 
     class Config:
@@ -106,8 +110,7 @@ class NurseResponseSchema(BaseModel):
     department: Optional[str] = None
     years_of_experience: Optional[str] = None
     schedule: Optional[str] = None
-    is_archived: Optional[bool] = False
-    is_available: Optional[bool] = True
+    certifications: Optional[str] = None
     user: UserResponseSchema
 
     class Config:
