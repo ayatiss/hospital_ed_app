@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Date, Integer, String
 from app.core.database import Base
 
 class Equipment(Base):
@@ -11,6 +11,6 @@ class Equipment(Base):
     total_quantity = Column(Integer, nullable=False, default=1)
     available_quantity = Column(Integer, nullable=False, default=1)
     location = Column(String, nullable=True)
-    last_maintenance_date = Column(String, nullable=True)
+    last_maintenance_date = Column(Date, nullable=True)
     manufacturer = Column(String, nullable=True)
-    purchase_date = Column(String, nullable=True)
+    purchase_date = Column(Date, nullable=True)

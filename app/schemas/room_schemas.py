@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 class CreateRoomSchema(BaseModel):
+    name: str
     type: str
     status: str
     capacity: Optional[int] = 1
@@ -9,7 +10,8 @@ class CreateRoomSchema(BaseModel):
 
 
 class RoomResponseSchema(BaseModel):
-    roomID: int
+    room_id: int
+    name: str
     type: str
     status: str
     capacity: int

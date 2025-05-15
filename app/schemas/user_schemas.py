@@ -123,3 +123,31 @@ class ReceptionistResponseSchema(BaseModel):
 
     class Config:
         orm_mode = True
+
+class UpdateUserBaseSchema(BaseModel):
+    firstname: str
+    lastname: str
+    role: str
+    number: Optional[str] = None
+    email: Optional[EmailStr] = None
+    address: Optional[str]
+    gender: Optional[str]
+    date_of_birth: Optional[date]
+    hire_date: Optional[date]
+
+class UpdateDoctorSchema(UpdateUserBaseSchema):
+    department: Optional[str]
+    schedule: Optional[str]
+    specialization: Optional[str]
+    license_number: Optional[str]
+    years_of_experience: Optional[int]
+
+class UpdateNurseSchema(UpdateUserBaseSchema):
+    department: Optional[str]
+    schedule: Optional[str]
+    years_of_experience: Optional[str]
+    certifications: Optional[str]
+
+class UpdateReceptionistSchema(UpdateUserBaseSchema):
+    desk_location: Optional[str]
+    languages_spoken: Optional[str]

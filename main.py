@@ -13,6 +13,7 @@ from app.models import schedule
 from app.models import RoomEquipement
 from app.api.auth import router as auth_router
 from app.api.admin import router as admin_router
+#Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()

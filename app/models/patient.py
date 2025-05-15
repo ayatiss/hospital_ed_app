@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, Date, ForeignKey, Integer, String
 from app.core.database import Base
 
 class Patient(Base):
@@ -11,8 +11,8 @@ class Patient(Base):
     date_of_birth = Column(String, nullable=True)
     medicalHistory = Column(String, nullable=True)
     currentStatus = Column(String, nullable=True)  # admitted, discharged, under observation
-    admission_date = Column(String, nullable=True)
-    discharge_date = Column(String, nullable=True)
-    room_id = Column(Integer, ForeignKey("rooms.roomID"), nullable=True)
+    admission_date = Column(Date, nullable=True)
+    discharge_date = Column(Date, nullable=True)
+    room_id = Column(Integer, ForeignKey("rooms.room_id"), nullable=True)
     emergency_contact = Column(String, nullable=True)
     insurance_provider = Column(String, nullable=True)
